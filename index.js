@@ -113,9 +113,6 @@ function creation(name, type, id, email, answers)
     console.log(myTeamFinished)
 }
 
-
-
-
 function promptUserAgain(){
     var i;
     for(i = 0; i < myTeam.length; i++ ) //checking if properly pushed
@@ -131,6 +128,7 @@ function promptUserAgain(){
     }
     else{ //no for generate html with information
         //newPrompt(myTeam)
+        initHTML();
     }
 }
 
@@ -145,7 +143,7 @@ const generateHTML = (answers) =>
   </head>
   <body>
   <p id="demo"></p>
-  ${answers.name}
+  ${myTeam[counter].name}
   </body>
   </html>`
   ;
@@ -161,44 +159,17 @@ const generateHTML = (answers) =>
   
   init();
 
-//maybe create objects?
-//create new prompt based on when promptuseragain is no (the else statement)
-//use the myTeam array and choose the myTeam.type and then use the oject.prototype 
-//thing and put in new information
+  const initHTML = () => {
+   writeFileAsync('index.html', generateHTML(myTeamFinished))
+      .then(() => console.log('Successfully wrote to index.html'))
+      .catch((err) => console.error(err));
+  };
+
+
+
+
+//info is good all goes into myTeamFinished
 //make a html file better all you really need is a title and some cards with info
+//make card creation dynamic
 
-/*
-function newPrompt(myTeam){
-    var i;
-    for(i = 0; i < myTeam.length; i++)
-    {
-        //console.log(myTeam[i].name) + " ";
-        if(myTeam[i].type == "Manager") //maybe prompt here?
-        {
-            //prompt here  something = prompt
-            //then use const x = new Manager(name, type, id, email, officeNumber) examlple
-            var add = inquirer.prompt([{
-                type: "input",
-                name: "phone",
-                message: "What is " + myTeam[i].name + " office number?: ",
-                validate: function validateName(name){
-                    return name !== "";
-                },
-            }, ]);
 
-           // const x = new Manager (myTeam[i].name, myTeam[i].type, myTeam[i].id, myTeam[i].email, add)
-           // myTeamFinished.push(x)
-            //console.log(myTeamFinished)
-        }
-        if(myTeam[i].type == "Engineer")
-        {
-            console.log(myTeamFinished)
-        }
-        if(myTeam[i].type == "Intern")
-        {
-            
-        }
-    }
-}
-*/
-//use const x = new Manger
