@@ -37,13 +37,19 @@ const promptUser = () => {
             return this.email;
         }
       },
+      {
+        type: 'list',
+        name: 'another',
+        message: "Is there another employee?",
+        choices: ["Yes", "No"],
+    },
     ]
     );
   };
 
 
-
-  const promptUserAgain = () => {
+/*
+  function promptUserAgain = () => {
     inquirer.prompt(
         {
             type: 'list',
@@ -54,12 +60,22 @@ const promptUser = () => {
                 if(this.choices == "Yes")
                     {
                         //console.log("hi")
-                      promptUser()
+                      init();
                     }
               }
         },
     )
-};
+};*/
+
+function promptUserAgain(answers){
+    if(myTeam[0].another == "Yes"){
+        init();
+    }
+    //console.log(myTeam[0].name)
+    //promptUser()
+
+}
+
 
 
 const generateHTML = (answers) =>
@@ -81,7 +97,11 @@ const generateHTML = (answers) =>
   const init = () => {
     promptUser()
       .then((answers) => myTeam.push(answers))
-      .then(() => console.log(myTeam))
+      //.then(() => console.log(myTeam))
+      .then((answers) => promptUserAgain(answers))
+
+
+      
       //.then((answers) => writeFileAsync('index.html', generateHTML(answers)))
       //.then(() => console.log('Successfully wrote to index.html')) //'Successfully wrote to index.html'
       //.catch((err) => console.error(err));
