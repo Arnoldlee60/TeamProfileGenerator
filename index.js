@@ -37,11 +37,6 @@ const promptUser = () => {
             return this.email;
         }
       },
-      {
-        type: 'input',
-        name: 'email',
-        message: "What the employee's email?",
-      },
     ]
     );
   };
@@ -85,7 +80,8 @@ const generateHTML = (answers) =>
 
   const init = () => {
     promptUser()
-      .then((answers) => promptUserAgain())
+      .then((answers) => myTeam.push(answers))
+      .then(() => console.log(myTeam))
       //.then((answers) => writeFileAsync('index.html', generateHTML(answers)))
       //.then(() => console.log('Successfully wrote to index.html')) //'Successfully wrote to index.html'
       //.catch((err) => console.error(err));
