@@ -90,10 +90,26 @@ const promptUserExtra = () => {
     }
 }
 
-function creation(name, type, id, email, phone) 
+function creation(name, type, id, email, answers) 
 {
-    const x = new Manager (name, type, id, email, phone);
+    if(myTeam[counter].type == "Manager")
+    {
+    const x = new Manager (name, type, id, email, answers.phone);
     myTeamFinished.push(x)
+    //console.log(myTeamFinished)
+    }
+    if(myTeam[counter].type == "Engineer")
+    {
+    const x = new Engineer (name, type, id, email, answers.github);
+    myTeamFinished.push(x)
+    //console.log(myTeamFinished)
+    }
+    if(myTeam[counter].type == "Intern")
+    {
+    const x = new Intern (name, type, id, email, answers.school);
+    myTeamFinished.push(x)
+    //console.log(myTeamFinished)
+    }
     console.log(myTeamFinished)
 }
 
@@ -110,13 +126,12 @@ function promptUserAgain(){
     
     //if yes then prompt for more employees
     if(myTeam[counter].another == "Yes"){
-        //counter++;
+        counter++;
         init();
     }
     else{ //no for generate html with information
         //newPrompt(myTeam)
     }
-    counter++
 }
 
 const generateHTML = (answers) =>
@@ -140,10 +155,8 @@ const generateHTML = (answers) =>
       .then((answers) => myTeam.push(answers)) //maybe new function on its own?
       //.then((answers) => console.log(myTeam[counter].name))
       .then((answers) => promptUserExtra())
-      .then((answers) => creation(myTeam[counter].name, myTeam[counter].type, myTeam[counter].id, myTeam[counter].email, answers.phone) 
-      )
+      .then((answers) => creation(myTeam[counter].name, myTeam[counter].type, myTeam[counter].id, myTeam[counter].email, answers))
       .then((answers) => promptUserAgain(answers))
-      
   };
   
   init();
