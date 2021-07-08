@@ -22,6 +22,12 @@ const promptUser = () => {
         },
       },
       {
+        type: 'list', //type of employee
+        name: 'type',
+        message: "What is your employee?",
+        choices: ["Manager", "Engineer", "Intern"],
+    },
+      {
         type: 'input',
         name: 'id',
         message: 'What is the employee id?',
@@ -60,6 +66,9 @@ function promptUserAgain(answers){
         counter++;
         init();
     }
+    else{ //no for generate html with information
+
+    }
 }
 
 const generateHTML = (answers) =>
@@ -88,5 +97,10 @@ const generateHTML = (answers) =>
   init();
   
 
+//create new prompt based on when promptuseragain is no (the else statement)
+//use the myTeam array and choose the myTeam.type and then use the array.prototype 
+//thing and put in new information
  
+
+//make a html file better all you really need is a title and some cards with info
 
