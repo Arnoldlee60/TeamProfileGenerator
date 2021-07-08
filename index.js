@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
-
+var counter = 0;
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -47,36 +47,20 @@ const promptUser = () => {
     );
   };
 
-
-/*
-  function promptUserAgain = () => {
-    inquirer.prompt(
-        {
-            type: 'list',
-            name: 'another',
-            message: "Is there another employee?",
-            choices: ["Yes", "No"],
-            again : function() {
-                if(this.choices == "Yes")
-                    {
-                        //console.log("hi")
-                      init();
-                    }
-              }
-        },
-    )
-};*/
-
 function promptUserAgain(answers){
-    if(myTeam[0].another == "Yes"){
+    var i;
+    for(i = 0; i < myTeam.length; i++ ) //checking if properly pushed
+    {
+    console.log("number " + i + " name " + myTeam[i].name + " ")
+    //promptUser()
+    }
+    
+    //if yes then prompt for more employees
+    if(myTeam[counter].another == "Yes"){
+        counter++;
         init();
     }
-    //console.log(myTeam[0].name)
-    //promptUser()
-
 }
-
-
 
 const generateHTML = (answers) =>
   `<!DOCTYPE html>
@@ -94,17 +78,11 @@ const generateHTML = (answers) =>
   </html>`
   ;
 
-  const init = () => {
+  const init = () => { //create add stuff into array
     promptUser()
       .then((answers) => myTeam.push(answers))
       //.then(() => console.log(myTeam))
       .then((answers) => promptUserAgain(answers))
-
-
-      
-      //.then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-      //.then(() => console.log('Successfully wrote to index.html')) //'Successfully wrote to index.html'
-      //.catch((err) => console.error(err));
   };
   
   init();
