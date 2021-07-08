@@ -57,6 +57,49 @@ const promptUser = () => {
     );
   };
 
+const promptUserExtra = () => {
+    if(myTeam[counter].type == "Manager")
+    {
+        //counter++;
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "phone",
+            message: "What is the employee's office number?: ",
+    }])
+    }
+    if(myTeam[counter].type == "Engineer")
+    {
+        //counter++;
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "github",
+            message: "What is the employee's github?: ",
+    }])
+    }
+    if(myTeam[counter].type == "Intern")
+    {
+       // counter++;
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "school",
+            message: "What is the employee's university?: ",
+    }])
+    }
+}
+
+function creation(name, type, id, email, phone) 
+{
+    const x = new Manager (name, type, id, email, phone);
+    myTeamFinished.push(x)
+    console.log(myTeamFinished)
+}
+
+
+
+
 function promptUserAgain(){
     var i;
     for(i = 0; i < myTeam.length; i++ ) //checking if properly pushed
@@ -67,12 +110,13 @@ function promptUserAgain(){
     
     //if yes then prompt for more employees
     if(myTeam[counter].another == "Yes"){
-        counter++;
+        //counter++;
         init();
     }
     else{ //no for generate html with information
-        newPrompt(myTeam)
+        //newPrompt(myTeam)
     }
+    counter++
 }
 
 const generateHTML = (answers) =>
@@ -93,20 +137,24 @@ const generateHTML = (answers) =>
 
   const init = () => { //create add stuff into array
     promptUser()
-      .then((answers) => myTeam.push(answers))
-      //.then(() => newPrompt(myTeam))
+      .then((answers) => myTeam.push(answers)) //maybe new function on its own?
+      //.then((answers) => console.log(myTeam[counter].name))
+      .then((answers) => promptUserExtra())
+      .then((answers) => creation(myTeam[counter].name, myTeam[counter].type, myTeam[counter].id, myTeam[counter].email, answers.phone) 
+      )
       .then((answers) => promptUserAgain(answers))
+      
   };
   
   init();
-  
+
 //maybe create objects?
 //create new prompt based on when promptuseragain is no (the else statement)
 //use the myTeam array and choose the myTeam.type and then use the oject.prototype 
 //thing and put in new information
 //make a html file better all you really need is a title and some cards with info
 
-
+/*
 function newPrompt(myTeam){
     var i;
     for(i = 0; i < myTeam.length; i++)
@@ -125,9 +173,9 @@ function newPrompt(myTeam){
                 },
             }, ]);
 
-            const x = new Manager (myTeam[i].name, myTeam[i].type, myTeam[i].id, myTeam[i].email, add)
-            myTeamFinished.push(x)
-            console.log(myTeamFinished)
+           // const x = new Manager (myTeam[i].name, myTeam[i].type, myTeam[i].id, myTeam[i].email, add)
+           // myTeamFinished.push(x)
+            //console.log(myTeamFinished)
         }
         if(myTeam[i].type == "Engineer")
         {
@@ -139,5 +187,5 @@ function newPrompt(myTeam){
         }
     }
 }
-
+*/
 //use const x = new Manger
