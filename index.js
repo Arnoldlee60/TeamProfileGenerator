@@ -142,8 +142,12 @@ const generateHTML = (answers) =>
     <title>Document</title>
   </head>
   <body>
-  <p id="demo"></p>
-  ${myTeam[counter].name}
+  <div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align: center;">Bootstrap Tutorial</h1>      
+  </div>
+  
+${/*This is where the generated cards will go*/ myTeam.length}
   </body>
   </html>`
   ;
@@ -171,5 +175,5 @@ const generateHTML = (answers) =>
 //info is good all goes into myTeamFinished
 //make a html file better all you really need is a title and some cards with info
 //make card creation dynamic
-
+//append child for loop for creating cards
 
