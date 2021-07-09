@@ -132,26 +132,6 @@ function promptUserAgain(){
     }
 }
 
-const generateHTML = (answers) =>
-  `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Document</title>
-  </head>
-  <body>
-  <div class="container">
-  <div class="jumbotron">
-    <h1 style="text-align: center;">Bootstrap Tutorial</h1>      
-  </div>
-  
-${/*This is where the generated cards will go*/ myTeam.length}
-  </body>
-  </html>`
-  ;
-
   const init = () => { //create add stuff into array
     promptUser()
       .then((answers) => myTeam.push(answers)) //maybe new function on its own?
@@ -176,4 +156,52 @@ ${/*This is where the generated cards will go*/ myTeam.length}
 //make a html file better all you really need is a title and some cards with info
 //make card creation dynamic
 //append child for loop for creating cards
+
+const generateHTML = (answers) =>
+  `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Document</title>
+  </head>
+  <body>
+  <div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align: center;">Bootstrap Tutorial</h1>      
+  </div>
+  ` 
+  + //add cards here
+  
+//cardGen;
+
+
+  //+
+  `
+  ${asd()}
+  </body>
+  </html>
+  `
+  ;
+
+var cardGen = //() =>{
+  `
+  <div class="card" style="width: 300px; float: left;">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">${myTeamFinished[0].name}</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  </div>  
+  `
+//}//${myTeamFinished[0].name}
+const cardGenArr = []
+
+function asd() {
+  return cardGen;
+}
 
