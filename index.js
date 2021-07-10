@@ -169,7 +169,7 @@ const generateHTML = (answers) =>
   <body>
   <div class="container">
   <div class="jumbotron">
-    <h1 style="text-align: center;">Bootstrap Tutorial</h1>      
+    <h1 style="text-align: center;">Team Profile</h1>      
   </div>
   ` 
   + //add cards here
@@ -179,29 +179,76 @@ const generateHTML = (answers) =>
 
   //+
   `
-  ${asd()}
+  ${cardElement()}
   </body>
   </html>
   `
   ;
+//it might not be working because this var is prolly looking for object literal right away
+//maybe have it work during generateHTML?
 
-var cardGen = //() =>{
-  `
-  <div class="card" style="width: 300px; float: left;">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">${myTeamFinished[0].name}</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  </div>  
-  `
+
 //}//${myTeamFinished[0].name}
 const cardGenArr = []
 
-function asd() {
-  return cardGen;
+function cardElement() {
+  for(var i = 0; i < myTeamFinished.length; i++)
+  {
+  //var cardGen = //() =>{ it might not be working because this var is prolly looking for object literal right away
+  //make if statements for different type of employee
+  if(myTeamFinished[i].type == "Manager")
+  {
+    var cardGen =
+  `
+  <div class="card" style="width: 300px; float: left;">
+  <div class="card-header">
+  <h1>${myTeamFinished[i].name}</h1>
+  <h1>${myTeamFinished[i].type}</h1>
+  </div>
+  <div class="card-body">
+  <p><a class="card-text">ID: ${myTeamFinished[i].id}</a></p>
+  <p><a href="${myTeamFinished[i].email}" class="card-text">Email: ${myTeamFinished[i].email}</a></p>
+  <p><a class="card-text">Phone Number: ${myTeamFinished[i].phone}</a></p>
+  </div>
+  </div>  
+  `
+  }
+    else if(myTeamFinished[i].type == "Engineer")
+    {
+      var cardGen =
+      `
+  <div class="card" style="width: 300px; float: left;">
+  <div class="card-header">
+  <h1>${myTeamFinished[i].name}</h1>
+  <h1>${myTeamFinished[i].type}</h1>
+  </div>
+  <div class="card-body">
+    <p><a class="card-text">ID: ${myTeamFinished[i].id}</a></p>
+    <p><a href="${myTeamFinished[i].email}" class="card-text">Email: ${myTeamFinished[i].email}</a></p>
+    <p><a href="https://github.com/${myTeamFinished[i].github}" class="card-text">Github: ${myTeamFinished[i].github}</a></p>
+  </div>
+  </div>  
+  `
+    }
+      else{ //Intern
+        var cardGen =
+        `
+  <div class="card" style="width: 200px; float: left;">
+  <div class="card-header">
+  <h1>${myTeamFinished[i].name}</h1>
+  <h1>${myTeamFinished[i].type}</h1>
+  </div>
+  <div class="card-body">
+  <p><a class="card-text">ID: ${myTeamFinished[i].id}</a></p>
+  <p><a href="${myTeamFinished[i].email}" class="card-text">Email: ${myTeamFinished[i].email}</a></p>
+  <p><a class="card-text">University: ${myTeamFinished[i].school}</a></p>
+  </div>
+  </div>  
+  `
+    }
+  cardGenArr.push(cardGen)
+  }
+  var x = cardGenArr.join(' ')
+  return x;
 }
 
