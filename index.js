@@ -240,7 +240,7 @@ function cardElement() {
   </div>
   <div class="card-body">
   <p><a class="card-text">ID: ${myTeamFinished[i].id}</a></p>
-  <p><a href="${myTeamFinished[i].email}" class="card-text">Email: ${myTeamFinished[i].email}</a></p>
+  <p><a class="card-text">Email: ${myTeamFinished[i].email}</a></p>
   <p><a class="card-text">University: ${myTeamFinished[i].school}</a></p>
   </div>
   </div>  
